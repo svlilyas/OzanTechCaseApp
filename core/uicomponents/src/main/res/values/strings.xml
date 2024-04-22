@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="numerator_decimal">%1s %2s</string>
+    <string name="daily_percent" formatted="true">%%%1s</string>
+    <string name="pair_name_chart">%1s Chart</string>
+</resources>

@@ -1,5 +1,11 @@
 @file:Suppress("UnstableApiUsage")
 
+import Module.Project.core_data
+import Module.Project.core_database
+import Module.Project.core_model
+import Module.Project.core_network
+import Module.Project.core_uicomponents
+
 plugins {
     id(libs.plugins.stack.android.application.get().pluginId)
     id(libs.plugins.stack.kotlin.android.get().pluginId)
@@ -99,6 +105,12 @@ android {
 }
 
 dependencies {
+    implementation(core_uicomponents())
+    implementation(core_model())
+    implementation(core_network())
+    implementation(core_database())
+    implementation(core_data())
+
     implementation(libs.androidx.core)
     implementation(libs.stack.material)
     implementation(libs.androidx.constraintlayout)
@@ -119,7 +131,7 @@ dependencies {
 
     implementation(libs.androidx.profile.installer)
 
-    //implementation(libs.stack.mpandroid.chart)
+    implementation(libs.stack.mpandroid.chart)
 
     debugImplementation(libs.stack.leakcanary)
 

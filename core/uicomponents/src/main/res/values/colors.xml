@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--App Colors-->
+    <color name="light_green">#009C21</color>
+    <color name="light_red">#D6301E</color>
+    <color name="white_100">#F8F8F8</color>
+</resources>

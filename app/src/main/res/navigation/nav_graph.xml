@@ -10,12 +10,20 @@
         android:id="@+id/coinListFragment"
         android:name="com.ozantech.ozantechcaseapp.coins.presentation.CoinListFragment"
         android:label="PokeDetailFragment"
-        tools:layout="@layout/fragment_coin_list" />
+        tools:layout="@layout/fragment_coin_list">
+        <action
+            android:id="@+id/action_coinListFragment_to_coinDetailFragment"
+            app:destination="@id/coinDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/coinDetailFragment"
         android:name="com.ozantech.ozantechcaseapp.detail.presentation.CoinDetailFragment"
         android:label="PokeDetailFragment"
-        tools:layout="@layout/fragment_coin_detail" />
+        tools:layout="@layout/fragment_coin_detail">
+        <argument
+            android:name="coinItem"
+            app:argType="com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse$Coin" />
+    </fragment>
 
 </navigation>

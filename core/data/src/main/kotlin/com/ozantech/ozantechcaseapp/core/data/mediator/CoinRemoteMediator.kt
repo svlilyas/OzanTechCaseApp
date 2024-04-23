@@ -8,7 +8,6 @@ import androidx.room.withTransaction
 import com.ozantech.ozantechcaseapp.core.data.repository.CoinRepository
 import com.ozantech.ozantechcaseapp.core.database.db.AppDatabase
 import com.ozantech.ozantechcaseapp.core.database.sharedpref.SharedPreferenceManager
-import com.ozantech.ozantechcaseapp.core.model.local.OrderType
 import com.ozantech.ozantechcaseapp.core.model.remote.network.Status
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
 import kotlinx.coroutines.flow.first
@@ -56,7 +55,7 @@ class CoinRemoteMediator @Inject constructor(
                 /**
                  * Controlling whether coinResponse contain inside favorite coins_db
                  */
-                appDatabase.appDao().upsertAll(pairResponseList = coinList.map { item1 ->
+                appDatabase.appDao().upsertAll(coinList = coinList.map { item1 ->
                     if (favoriteCoins.firstOrNull { item2 ->
                             item1.uuid == item2.uuid
                         } != null) {

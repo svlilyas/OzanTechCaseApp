@@ -62,7 +62,7 @@
             android:maxLines="@integer/default_line_limit"
             app:layout_constraintBottom_toBottomOf="@+id/tvCoinShortName"
             app:layout_constraintEnd_toStartOf="@+id/tvDailyPercent"
-            tools:text="3,469" />
+            tools:text="$3,469" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDailyPercent"

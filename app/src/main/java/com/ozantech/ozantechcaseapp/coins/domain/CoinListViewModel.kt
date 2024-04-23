@@ -7,19 +7,24 @@ import androidx.paging.cachedIn
 import androidx.paging.insertHeaderItem
 import androidx.paging.insertSeparators
 import androidx.paging.map
+import com.ozantech.ozantechcaseapp.coins.presentation.CoinListItem
+import com.ozantech.ozantechcaseapp.core.database.db.AppDao
 import com.ozantech.ozantechcaseapp.core.database.sharedpref.SharedPreferenceManager
+import com.ozantech.ozantechcaseapp.core.model.extension.EntityExt.toEntity
 import com.ozantech.ozantechcaseapp.core.model.extension.StringExt.empty
 import com.ozantech.ozantechcaseapp.core.model.local.UiState
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
 import com.ozantech.ozantechcaseapp.core.uicomponents.platform.viewmodel.BaseViewModel
-import com.ozantech.ozantechcaseapp.detail.presentation.CoinListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CoinListViewModel @Inject constructor(
-    pager: Pager<Int, CoinResponse.Coin>, private val sharedPref: SharedPreferenceManager
+    pager: Pager<Int, CoinResponse.Coin>,
+    private val sharedPref: SharedPreferenceManager,
+    private val appDao: AppDao
 ) : BaseViewModel<CoinListViewState, CoinListViewAction>(CoinListViewState()) {
     val coinsPagingFlow =
         pager.flow.map { pagingData -> pagingData.map { CoinListItem.CoinItem(coinItem = it) } }
@@ -37,6 +42,17 @@ class CoinListViewModel @Inject constructor(
 
     fun changeFilterType(filterType: String) {
         sharedPref.filterType = filterType
+    }
+
+    fun toggleFavorite(coinItem: CoinResponse.Coin) {
+        viewModelScope.launch {
+            val coinEntity = coinItem.toEntity()
+            if (coinEntity.isFavorite) {
+                appDao.insert(coinEntity)
+            } else {
+                appDao.delete(coinEntity)
+            }
+        }
     }
 
     override fun onReduceState(viewAction: CoinListViewAction): CoinListViewState =

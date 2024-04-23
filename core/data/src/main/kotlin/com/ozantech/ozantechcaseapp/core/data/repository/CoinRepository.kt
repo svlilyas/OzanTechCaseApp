@@ -5,6 +5,7 @@ import com.ozantech.ozantechcaseapp.core.data.client.CoinClient
 import com.ozantech.ozantechcaseapp.core.database.db.AppDatabase
 import com.ozantech.ozantechcaseapp.core.model.local.CoinEntity
 import com.ozantech.ozantechcaseapp.core.model.remote.network.Resource
+import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinHistoryResponse
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
 import com.ozantech.ozantechcaseapp.core.network.utils.NetworkHandler.handleResponse
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,9 +21,14 @@ class CoinRepository @Inject constructor(
     private val pairDb: AppDatabase
 ) {
     @WorkerThread
-    suspend fun fetchCoins(orderBy:String): Flow<Resource<CoinResponse>> =
+    suspend fun fetchCoins(orderBy: String): Flow<Resource<CoinResponse>> =
         handleResponse {
-            coinClient.fetchCoins(orderBy=orderBy)
+            coinClient.fetchCoins(orderBy = orderBy)
+        }.flowOn(ioDispatcher)
+
+    suspend fun fetchCoinHistory(uuid: String): Flow<Resource<CoinHistoryResponse>> =
+        handleResponse {
+            coinClient.fetchCoinHistory(uuid = uuid)
         }.flowOn(ioDispatcher)
 
     @WorkerThread

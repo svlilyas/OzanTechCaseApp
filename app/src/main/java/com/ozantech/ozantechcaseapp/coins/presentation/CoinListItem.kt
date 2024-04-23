@@ -1,4 +1,4 @@
-package com.ozantech.ozantechcaseapp.detail.presentation
+package com.ozantech.ozantechcaseapp.coins.presentation
 
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
 

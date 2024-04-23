@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.ozantech.ozantechcaseapp.coins.domain.CoinListViewModel
+import com.ozantech.ozantechcaseapp.core.model.extension.CollectionExt.safeGet
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
 import com.ozantech.ozantechcaseapp.core.uicomponents.extensions.ViewExt.setOnDebouncedClickListener
 import com.ozantech.ozantechcaseapp.core.uicomponents.platform.BaseViewHolder
 import com.ozantech.ozantechcaseapp.databinding.ItemCoinBinding
 import com.ozantech.ozantechcaseapp.databinding.ItemCoinHeaderBinding
 import com.ozantech.ozantechcaseapp.databinding.ItemCoinSeparatorBinding
-import com.ozantech.ozantechcaseapp.detail.presentation.CoinListItem
 
-class CoinAdapter :
+class CoinAdapter(private val viewModel: CoinListViewModel) :
     PagingDataAdapter<CoinListItem, RecyclerView.ViewHolder>(
         differCallBack
     ) {
@@ -24,7 +25,7 @@ class CoinAdapter :
     }
 
     override fun getItemViewType(position: Int): Int {
-        getItem(position)?.let {
+        snapshot().items.safeGet(index = position)?.let {
             return when (it) {
                 CoinListItem.Header -> PairListViewType.Header.ordinal
                 is CoinListItem.CoinItem -> PairListViewType.CoinItem.ordinal
@@ -35,7 +36,7 @@ class CoinAdapter :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        getItem(position)?.let {
+        snapshot().items.safeGet(index = position)?.let {
             when (it) {
                 CoinListItem.Header -> (holder as CoinHeaderViewHolder).bind()
                 is CoinListItem.CoinItem -> (holder as CoinViewHolder).bind(
@@ -64,13 +65,16 @@ class CoinAdapter :
         fun bind(coinItem: CoinResponse.Coin) {
             with(binding) {
                 item = coinItem
-                executePendingBindings()
                 ivFavorite.setOnDebouncedClickListener {
-                    //viewModel.toggleFavorite(pairEntity = pairEntity)
+                    val newCoinItem=coinItem.copy(isFavorite = !coinItem.isFavorite)
+                    item = newCoinItem
+                    viewModel.toggleFavorite(coinItem = newCoinItem)
+                    executePendingBindings()
                 }
                 root.setOnDebouncedClickListener {
                     debouncedClickListener?.invoke(coinItem)
                 }
+                executePendingBindings()
             }
         }
     }

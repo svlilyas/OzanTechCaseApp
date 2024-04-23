@@ -20,9 +20,9 @@ object NumberExt {
 
             val formattedNumber = DecimalFormat("#,##0.00").format(number)
 
-            formattedNumber
+            context.getString(R.string.dollar_price, formattedNumber)
         } catch (e: Exception) {
-            numberString
+            context.getString(R.string.dollar_price, numberString)
         }
     }
 

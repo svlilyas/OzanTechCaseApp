@@ -17,10 +17,10 @@ interface AppDao {
      * all coins
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(pairResponse: CoinResponse.Coin)
+    suspend fun insert(coinItem: CoinResponse.Coin)
 
     @Upsert
-    suspend fun upsertAll(pairResponseList: List<CoinResponse.Coin>)
+    suspend fun upsertAll(coinList: List<CoinResponse.Coin>)
 
     @Query("SELECT * FROM coins_db")
     fun pagingSource(): PagingSource<Int, CoinResponse.Coin>

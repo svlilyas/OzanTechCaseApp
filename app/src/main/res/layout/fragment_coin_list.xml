@@ -25,31 +25,6 @@
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvFavorites"
-                        style="@style/studioSansPurpleBlack25"
-                        android:layout_width="@dimen/size_0dp"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/sizeX_medium"
-                        android:text="@string/favorites"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvFavoriteCoins"
-                        android:layout_width="@dimen/size_0dp"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:orientation="horizontal"
-                        android:paddingStart="@dimen/sizeX_medium"
-                        android:paddingEnd="@dimen/size_0dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvFavorites"
-                        tools:itemCount="5"
-                        tools:listitem="@layout/item_favorite_coin" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvCoins"
                         style="@style/studioSansPurpleBlack25"
                         android:layout_width="@dimen/size_0dp"
@@ -58,7 +33,7 @@
                         android:padding="@dimen/sizeX_medium"
                         android:text="@string/ranking_list"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rvFavoriteCoins" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -69,7 +44,6 @@
                         app:layout_constraintBottom_toBottomOf="@+id/tvCoins"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tvCoins"
-                        app:layout_constraintTop_toBottomOf="@+id/rvFavoriteCoins"
                         app:layout_constraintTop_toTopOf="@+id/tvCoins">
 
                         <AutoCompleteTextView

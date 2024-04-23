@@ -47,6 +47,11 @@ abstract class BindingFragment<T : ViewDataBinding> constructor(
     @BindingOnly
     protected inline fun binding(block: T.() -> Unit) = with(binding) { block() }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        observeData()
+    }
+
     /**
      * Ensures the [binding] property should be executed and provide the inflated view which depends on [contentLayoutId].
      */
@@ -59,6 +64,19 @@ abstract class BindingFragment<T : ViewDataBinding> constructor(
             DataBindingUtil.inflate(inflater, contentLayoutId, container, false, bindingComponent)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        getViewData()
+        initClickListeners()
+    }
+
+    open fun observeData() {}
+
+    open fun getViewData() {}
+
+    open fun initClickListeners() {}
 
     /**
      * Destroys the [_binding] backing property for preventing leaking the [ViewDataBinding] that references the Context.

@@ -1,0 +1,70 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/purple_100</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/purple_black</item>
+        <item name="colorOnSurfaceVariant">@color/purple_100</item>
+        <item name="colorAccent">@color/purple_black</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+    <!--Studio Sans Demo-->
+    <style name="studioSansWhite12" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="font">@font/studio_sans_demo</item>
+        <item name="android:textColor">@color/white_100</item>
+    </style>
+
+    <style name="studioSansWhite15" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="font">@font/studio_sans_demo</item>
+        <item name="android:textColor">@color/white_100</item>
+    </style>
+
+    <style name="studioSansGreen15" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="font">@font/studio_sans_demo</item>
+        <item name="android:textColor">@color/light_green</item>
+    </style>
+
+    <style name="studioSansGrey15" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="font">@font/studio_sans_demo</item>
+        <item name="android:textColor">@color/grey_100</item>
+    </style>
+
+    <style name="studioSansRed15" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="font">@font/studio_sans_demo</item>
+        <item name="android:textColor">@color/light_red</item>
+    </style>
+
+    <style name="studioSansLightGreen18" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="font">@font/studio_sans_demo</item>
+        <item name="android:textColor">@color/light_green</item>
+    </style>
+
+    <style name="studioSansPurpleBlack20" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="font">@font/studio_sans_demo</item>
+        <item name="android:textColor">@color/purple_black</item>
+    </style>
+
+    <style name="studioSansPurpleBlack25" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">25sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="font">@font/studio_sans_demo</item>
+        <item name="android:textColor">@color/purple_black</item>
+    </style>
+
+</resources>

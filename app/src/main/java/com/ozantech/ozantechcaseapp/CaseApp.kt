@@ -2,6 +2,16 @@ package com.ozantech.ozantechcaseapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 
 @HiltAndroidApp
-class CaseApp : Application()
+class CaseApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+            Timber.d("Timber initialized.")
+        }
+    }
+}

@@ -9,8 +9,8 @@ import com.ozantech.ozantechcaseapp.core.uicomponents.binding.BindingFragment
 import com.ozantech.ozantechcaseapp.databinding.FragmentCoinDetailBinding
 import com.ozantech.ozantechcaseapp.detail.domain.CoinDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class CoinDetailFragment :
@@ -21,7 +21,7 @@ class CoinDetailFragment :
         lifecycleScope.launch {
             viewModel.uiStateFlow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
                 .collect {
-
+                    Timber.d(it.uiState.toString())
                 }
         }
     }

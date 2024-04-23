@@ -3,7 +3,7 @@ package com.ozantech.ozantechcaseapp.core.data.repository
 import androidx.annotation.WorkerThread
 import com.ozantech.ozantechcaseapp.core.data.client.CoinClient
 import com.ozantech.ozantechcaseapp.core.database.db.AppDatabase
-import com.ozantech.ozantechcaseapp.core.model.local.PairEntity
+import com.ozantech.ozantechcaseapp.core.model.local.CoinEntity
 import com.ozantech.ozantechcaseapp.core.model.remote.network.Resource
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
 import com.ozantech.ozantechcaseapp.core.network.utils.NetworkHandler.handleResponse
@@ -20,13 +20,13 @@ class CoinRepository @Inject constructor(
     private val pairDb: AppDatabase
 ) {
     @WorkerThread
-    suspend fun fetchCoins(): Flow<Resource<CoinResponse>> =
+    suspend fun fetchCoins(orderBy:String): Flow<Resource<CoinResponse>> =
         handleResponse {
-            coinClient.fetchCoins()
+            coinClient.fetchCoins(orderBy=orderBy)
         }.flowOn(ioDispatcher)
 
     @WorkerThread
-    suspend fun getFavoriteCoins(): Flow<List<PairEntity>> = flow {
+    suspend fun getFavoriteCoins(): Flow<List<CoinEntity>> = flow {
         emit(pairDb.appDao().getFavoriteCoins().first())
     }.flowOn(ioDispatcher)
 

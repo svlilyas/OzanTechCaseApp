@@ -7,6 +7,6 @@ sealed class CoinListViewAction : BaseAction {
     data class OnFailure(val errorMessage: String? = String.empty) : CoinListViewAction()
     object OnLoading : CoinListViewAction()
     object OnSuccess : CoinListViewAction()
-    object GetCoinList : CoinListViewAction()
+    object GetFavorites : CoinListViewAction()
     object RestoreState : CoinListViewAction()
 }

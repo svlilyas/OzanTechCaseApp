@@ -8,7 +8,7 @@
         android:background="@color/white">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swPairList"
+            android:id="@+id/swCoinList"
             android:layout_width="@dimen/size_0dp"
             android:layout_height="@dimen/size_0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +35,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvFavoritePairs"
+                        android:id="@+id/rvFavoriteCoins"
                         android:layout_width="@dimen/size_0dp"
                         android:layout_height="wrap_content"
                         android:clipToPadding="false"
@@ -46,38 +46,55 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvFavorites"
-                        tools:itemCount="5" />
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_favorite_coin" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvPairs"
+                        android:id="@+id/tvCoins"
                         style="@style/studioSansPurpleBlack25"
                         android:layout_width="@dimen/size_0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/sizeXXXX_small"
                         android:padding="@dimen/sizeX_medium"
-                        android:text="@string/coins"
+                        android:text="@string/ranking_list"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rvFavoritePairs" />
+                        app:layout_constraintTop_toBottomOf="@+id/rvFavoriteCoins" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="@dimen/size_0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/sizeX_medium"
+                        android:hint="@string/price"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvCoins"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvCoins"
+                        app:layout_constraintTop_toBottomOf="@+id/rvFavoriteCoins"
+                        app:layout_constraintTop_toTopOf="@+id/tvCoins">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tvFilterName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/price"
+                            android:inputType="none"
+                            android:padding="@dimen/sizeX_medium"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvPairs"
+                        android:id="@+id/rvCoins"
                         android:layout_width="@dimen/size_0dp"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
                         android:orientation="vertical"
-                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvPairs"
-                        tools:itemCount="11" />
-
-                    <androidx.constraintlayout.widget.Group
-                        android:id="@+id/groupData"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="invisible"
-                        app:constraint_referenced_ids="rvFavoritePairs,rvPairs" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvCoins"
+                        tools:itemCount="11"
+                        tools:listitem="@layout/item_coin" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -66,6 +66,8 @@ data class CoinResponse(
         @Json(name = "btcPrice")
         val btcPrice: String? = null,
         @Json(name = "contractAddresses")
-        val contractAddresses: List<String?>? = null
+        val contractAddresses: List<String?>? = null,
+        @Transient
+        var isFavorite: Boolean = false
     )
 }

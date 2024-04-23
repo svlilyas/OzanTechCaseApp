@@ -9,6 +9,6 @@ import javax.inject.Inject
 class CoinClient @Inject constructor(
     private val coinService: CoinService
 ) {
-    suspend fun fetchCoins(): Response<BaseApiResponse<CoinResponse>> =
-        coinService.fetchCoins()
+    suspend fun fetchCoins(orderBy:String): Response<BaseApiResponse<CoinResponse>> =
+        coinService.fetchCoins(orderBy = orderBy)
 }

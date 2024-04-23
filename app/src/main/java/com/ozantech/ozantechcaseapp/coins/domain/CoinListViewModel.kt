@@ -7,7 +7,7 @@ import androidx.paging.cachedIn
 import androidx.paging.insertHeaderItem
 import androidx.paging.insertSeparators
 import androidx.paging.map
-import com.ozantech.ozantechcaseapp.core.data.repository.CoinRepository
+import com.ozantech.ozantechcaseapp.core.database.sharedpref.SharedPreferenceManager
 import com.ozantech.ozantechcaseapp.core.model.extension.StringExt.empty
 import com.ozantech.ozantechcaseapp.core.model.local.UiState
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
@@ -19,9 +19,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CoinListViewModel @Inject constructor(
-    pager: Pager<Int, CoinResponse.Coin>, private val coinRepository: CoinRepository
+    pager: Pager<Int, CoinResponse.Coin>, private val sharedPref: SharedPreferenceManager
 ) : BaseViewModel<CoinListViewState, CoinListViewAction>(CoinListViewState()) {
-    val pairsPagingFlow =
+    val coinsPagingFlow =
         pager.flow.map { pagingData -> pagingData.map { CoinListItem.CoinItem(coinItem = it) } }
             .map {
                 it.insertSeparators { before, after ->
@@ -34,6 +34,10 @@ class CoinListViewModel @Inject constructor(
             }.map {
                 it.insertHeaderItem(TerminalSeparatorType.FULLY_COMPLETE, CoinListItem.Header)
             }.cachedIn(viewModelScope)
+
+    fun changeFilterType(filterType: String) {
+        sharedPref.filterType = filterType
+    }
 
     override fun onReduceState(viewAction: CoinListViewAction): CoinListViewState =
         when (viewAction) {
@@ -50,7 +54,7 @@ class CoinListViewModel @Inject constructor(
                 uiState = UiState.SUCCESS
             )
 
-            CoinListViewAction.GetCoinList -> {
+            CoinListViewAction.GetFavorites -> {
                 state.copy(errorMessage = null, uiState = UiState.LOADING)
             }
 

@@ -5,13 +5,14 @@ import androidx.room.PrimaryKey
 import com.ozantech.ozantechcaseapp.core.model.extension.StringExt.empty
 
 @Entity(tableName = "favorites_db")
-data class PairEntity(
+data class CoinEntity(
     @PrimaryKey(autoGenerate = false)
-    val pair: String = String.empty,
-    val pairNormalized: String? = String.empty,
-    val volume: Double? = 0.0,
-    val dailyPercent: Double? = 0.0,
-    val last: Double? = 0.0,
-    val numeratorSymbol: String? = String.empty,
+    val uuid: String = String.empty,
+    val symbol: String? = null,
+    val name: String? = null,
+    val color: String? = null,
+    val marketCap: String? = null,
+    val price: String? = null,
+    val change: String? = null,
     var isFavorite: Boolean = false
 )

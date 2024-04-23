@@ -50,7 +50,6 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = AppConfig.debugAppIdSuffix
         }
         release {
             isMinifyEnabled = true
@@ -65,7 +64,6 @@ android {
         create(AppConfig.stage) {
             dimension = AppConfig.defaultFlavorDimension
 
-            applicationIdSuffix = AppConfig.stageAppIdSuffix
             manifestPlaceholders["appLabel"] = AppConfig.devAppName
 
             versionName = AppConfig.devVersionName
@@ -79,7 +77,7 @@ android {
 
             versionName = AppConfig.prodVersionName
 
-            signingConfig = signingConfigs.getByName(AppConfig.stage)
+            signingConfig = signingConfigs.getByName(AppConfig.prod)
         }
     }
 
@@ -118,6 +116,7 @@ dependencies {
 
     implementation(libs.stack.shimmer)
     implementation(libs.androidx.swiperefresh)
+    implementation(libs.androidx.lifecycle.runtime)
 
     // hilt
     implementation(libs.stack.hilt.android)

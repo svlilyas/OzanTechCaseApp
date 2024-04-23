@@ -9,7 +9,6 @@ import com.ozantech.ozantechcaseapp.coins.domain.CoinListViewModel
 import com.ozantech.ozantechcaseapp.core.uicomponents.binding.BindingFragment
 import com.ozantech.ozantechcaseapp.databinding.FragmentCoinListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -21,7 +20,7 @@ class CoinListFragment :
     override fun observeData() {
         lifecycleScope.launch {
             viewModel.uiStateFlow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collectLatest {
+                .collect {
                     Timber.d(it.uiState.toString())
                 }
         }

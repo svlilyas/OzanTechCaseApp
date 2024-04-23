@@ -6,5 +6,6 @@ import com.ozantech.ozantechcaseapp.core.uicomponents.platform.viewmodel.BaseVie
 
 data class CoinListViewState(
     val errorMessage: String? = String.empty,
-    override val uiState: UiState = UiState.LOADING
+    override val uiState: UiState = UiState.LOADING,
+    val navigateToCoinDetail: Boolean = false
 ) : BaseViewState

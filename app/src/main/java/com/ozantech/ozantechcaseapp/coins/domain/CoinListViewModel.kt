@@ -53,5 +53,7 @@ class CoinListViewModel @Inject constructor(
             CoinListViewAction.GetCoinList -> {
                 state.copy(errorMessage = null, uiState = UiState.LOADING)
             }
+
+            CoinListViewAction.RestoreState -> CoinListViewState()
         }
 }

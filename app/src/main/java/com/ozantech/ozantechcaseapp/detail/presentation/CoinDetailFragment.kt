@@ -20,7 +20,7 @@ class CoinDetailFragment :
     override fun observeData() {
         lifecycleScope.launch {
             viewModel.uiStateFlow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collectLatest {
+                .collect {
 
                 }
         }

@@ -8,4 +8,5 @@ sealed class CoinListViewAction : BaseAction {
     object OnLoading : CoinListViewAction()
     object OnSuccess : CoinListViewAction()
     object GetCoinList : CoinListViewAction()
+    object RestoreState : CoinListViewAction()
 }

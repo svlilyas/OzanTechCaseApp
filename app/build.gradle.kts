@@ -116,7 +116,6 @@ dependencies {
 
     implementation(libs.stack.shimmer)
     implementation(libs.androidx.swiperefresh)
-    implementation(libs.androidx.lifecycle.runtime)
 
     // hilt
     implementation(libs.stack.hilt.android)

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/sizeXXXX_small"
+        tools:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="@dimen/sizeXXX_medium"
+            android:layout_height="@dimen/sizeXXX_medium"
+            android:layout_marginStart="@dimen/sizeX_medium"
+            android:src="@drawable/ic_favorite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPairName"
+            style="@style/studioSansPurpleBlack20"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sizeXXXX_small"
+            android:maxLines="@integer/default_line_limit"
+            android:text="@string/coin_name"
+            app:layout_constraintEnd_toStartOf="@+id/tvLast"
+            app:layout_constraintStart_toEndOf="@+id/ivFavorite"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLast"
+            style="@style/studioSansPurpleBlack20"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/sizeXXXX_small"
+            android:maxLines="@integer/default_line_limit"
+            android:text="@string/last"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPairName"
+            app:layout_constraintEnd_toStartOf="@+id/tvDailyPercent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDailyPercent"
+            style="@style/studioSansGreen15"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/sizeX_medium"
+            android:maxLines="@integer/default_line_limit"
+            android:text="@string/daily_percent_title"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPairName"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvVolume"
+            style="@style/studioSansGrey15"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/sizeX_medium"
+            android:maxLines="@integer/default_line_limit"
+            android:text="@string/btc_price_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDailyPercent" />
+
+        <View
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="@dimen/size_1dp"
+            android:layout_marginTop="@dimen/sizeXXXX_small"
+            android:background="@color/grey_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvVolume" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

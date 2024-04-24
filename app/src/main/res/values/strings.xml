@@ -3,4 +3,14 @@
     <string name="no_data">There is no data</string>
     <string name="favorites">Favorites</string>
     <string name="coins">Coins</string>
+    <string name="coin_name">Coin Name</string>
+    <string name="last">$Last</string>
+    <string name="daily_percent_title">Daily Percent</string>
+    <string name="btc_price_title">BTC Price</string>
+    <string name="ranking_list">Ranking List</string>
+    <string name="price">price</string>
+    <string name="rank_info">Rank: %1s</string>
+    <string name="high_info">High: %1s</string>
+    <string name="low_info">Low: %1s</string>
+    <string name="price_title">PRICE</string>
 </resources>

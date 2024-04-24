@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse.Coin" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/sizeX_medium"
+        android:paddingVertical="@dimen/sizeXXXX_small"
+        tools:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="@dimen/sizeXXX_medium"
+            android:layout_height="@dimen/sizeXXX_medium"
+            android:src="@drawable/ic_favorite"
+            android:tint="@{item.favorite ? @color/yellow : @color/grey_100}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCoinShortName"
+            style="@style/studioSansPurpleBlack20"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sizeXXXX_small"
+            android:maxLines="@integer/default_line_limit"
+            android:text="@{item.symbol}"
+            app:layout_constraintEnd_toStartOf="@+id/tvLast"
+            app:layout_constraintStart_toEndOf="@+id/ivFavorite"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ETH" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCoinName"
+            style="@style/studioSansPurpleBlack20"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sizeXXXX_small"
+            android:maxLines="@integer/default_line_limit"
+            android:text="@{item.name}"
+            app:layout_constraintEnd_toStartOf="@+id/tvLast"
+            app:layout_constraintStart_toEndOf="@+id/ivFavorite"
+            app:layout_constraintTop_toBottomOf="@+id/tvCoinShortName"
+            tools:text="Ethereum" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLast"
+            style="@style/studioSansPurpleBlack20"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/sizeXXXX_small"
+            android:decimalFormat="@{item.price}"
+            android:maxLines="@integer/default_line_limit"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCoinShortName"
+            app:layout_constraintEnd_toStartOf="@+id/tvDailyPercent"
+            tools:text="$3,469" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDailyPercent"
+            style="@style/studioSansRed15"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="@integer/default_line_limit"
+            android:showPercent="@{item.change}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCoinShortName"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="%10,25" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvVolume"
+            style="@style/studioSansGrey15"
+            android:layout_width="@dimen/size_0dp"
+            android:layout_height="wrap_content"
+            android:btcPrice="@{item.btcPrice}"
+            android:maxLines="@integer/default_line_limit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDailyPercent"
+            tools:text="35,10 BTC" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

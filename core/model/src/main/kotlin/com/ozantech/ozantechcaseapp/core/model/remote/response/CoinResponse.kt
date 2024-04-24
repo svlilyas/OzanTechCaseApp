@@ -1,10 +1,12 @@
 package com.ozantech.ozantechcaseapp.core.model.remote.response
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.ozantech.ozantechcaseapp.core.model.extension.StringExt.empty
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 data class CoinResponse(
@@ -29,6 +31,7 @@ data class CoinResponse(
         val total24hVolume: String? = null
     )
 
+    @Parcelize
     @Entity(tableName = "coins_db")
     @JsonClass(generateAdapter = true)
     data class Coin(
@@ -66,6 +69,8 @@ data class CoinResponse(
         @Json(name = "btcPrice")
         val btcPrice: String? = null,
         @Json(name = "contractAddresses")
-        val contractAddresses: List<String?>? = null
-    )
+        val contractAddresses: List<String?>? = null,
+        @Transient
+        var isFavorite: Boolean = false
+    ) : Parcelable
 }

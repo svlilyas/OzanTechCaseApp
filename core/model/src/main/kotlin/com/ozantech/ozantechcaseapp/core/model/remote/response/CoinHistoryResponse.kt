@@ -15,6 +15,6 @@ data class CoinHistoryResponse(
         @Json(name = "price")
         val price: String? = null,
         @Json(name = "timestamp")
-        val timestamp: Long? = null
+        val timestamp: Float? = null
     )
 }

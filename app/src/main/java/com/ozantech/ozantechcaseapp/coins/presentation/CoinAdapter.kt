@@ -66,7 +66,7 @@ class CoinAdapter(private val viewModel: CoinListViewModel) :
             with(binding) {
                 item = coinItem
                 ivFavorite.setOnDebouncedClickListener {
-                    val newCoinItem=coinItem.copy(isFavorite = !coinItem.isFavorite)
+                    val newCoinItem = coinItem.copy(isFavorite = !coinItem.isFavorite)
                     item = newCoinItem
                     viewModel.toggleFavorite(coinItem = newCoinItem)
                     executePendingBindings()

@@ -12,4 +12,5 @@
     <string name="rank_info">Rank: %1s</string>
     <string name="high_info">High: %1s</string>
     <string name="low_info">Low: %1s</string>
+    <string name="price_title">PRICE</string>
 </resources>

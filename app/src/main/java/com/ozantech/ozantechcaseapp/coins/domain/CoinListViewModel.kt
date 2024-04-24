@@ -17,6 +17,7 @@ import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
 import com.ozantech.ozantechcaseapp.core.uicomponents.platform.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,6 +39,8 @@ class CoinListViewModel @Inject constructor(
                 }
             }.map {
                 it.insertHeaderItem(TerminalSeparatorType.FULLY_COMPLETE, CoinListItem.Header)
+            }.onEach {
+                sendAction(viewAction = CoinListViewAction.OnSuccess)
             }.cachedIn(viewModelScope)
 
     fun changeFilterType(filterType: String) {
@@ -52,6 +55,8 @@ class CoinListViewModel @Inject constructor(
             } else {
                 appDao.delete(coinEntity)
             }
+
+            sendAction(CoinListViewAction.RefreshList)
         }
     }
 
@@ -67,13 +72,20 @@ class CoinListViewModel @Inject constructor(
 
             CoinListViewAction.OnSuccess -> state.copy(
                 errorMessage = null,
-                uiState = UiState.SUCCESS
+                uiState = UiState.SUCCESS,
+                refreshList = false
             )
 
-            CoinListViewAction.GetFavorites -> {
-                state.copy(errorMessage = null, uiState = UiState.LOADING)
-            }
+            CoinListViewAction.GetFavorites -> state.copy(
+                errorMessage = null,
+                uiState = UiState.LOADING
+            )
 
             CoinListViewAction.RestoreState -> CoinListViewState()
+            CoinListViewAction.RefreshList -> state.copy(
+                errorMessage = null,
+                uiState = UiState.LOADING,
+                refreshList = true
+            )
         }
 }

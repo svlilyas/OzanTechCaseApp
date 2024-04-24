@@ -11,7 +11,6 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.ozantech.ozantechcaseapp.R
 import com.ozantech.ozantechcaseapp.core.model.extension.BooleanExt.safeGet
-import com.ozantech.ozantechcaseapp.core.model.extension.StringExt.empty
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinHistoryResponse
 import com.ozantech.ozantechcaseapp.core.model.remote.response.CoinResponse
 import com.ozantech.ozantechcaseapp.core.uicomponents.binding.BindingFragment
@@ -67,7 +66,7 @@ class CoinDetailFragment :
                 coinItem?.let {
                     coinItem = it.copy(isFavorite = !coinItem?.isFavorite.safeGet())
                     item = coinItem
-                    viewModel.toggleFavorite(coinItem = it)
+                    viewModel.toggleFavorite(coinItem = coinItem)
                 }
             }
         }
@@ -77,17 +76,17 @@ class CoinDetailFragment :
         binding {
             try {
                 val entryList: ArrayList<Entry> = ArrayList()
-                coinHistory.history?.forEach { item ->
+                coinHistory.history?.forEachIndexed { index, item ->
                     entryList.add(
                         Entry(
-                            item?.timestamp?.toFloat() ?: 0F,
+                            index.toFloat(),
                             item?.price?.toFloat() ?: 0F
                         )
                     )
                     Timber.d("TS: ${item?.timestamp} PR: ${item?.price}")
                 }
 
-                val lineDataSet = LineDataSet(entryList, String.empty)
+                val lineDataSet = LineDataSet(entryList, getString(R.string.price_title))
 
                 val datasets: ArrayList<ILineDataSet> = ArrayList()
                 datasets.add(lineDataSet)

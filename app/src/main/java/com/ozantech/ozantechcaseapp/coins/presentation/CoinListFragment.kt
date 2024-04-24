@@ -1,9 +1,9 @@
 package com.ozantech.ozantechcaseapp.coins.presentation
 
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ozantech.ozantechcaseapp.R
 import com.ozantech.ozantechcaseapp.coins.domain.CoinListViewModel
@@ -13,7 +13,6 @@ import com.ozantech.ozantechcaseapp.core.uicomponents.extensions.FlowExt.flowWit
 import com.ozantech.ozantechcaseapp.databinding.FragmentCoinListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -35,6 +34,20 @@ class CoinListFragment :
             coinAdapter?.submitData(it)
 
             binding.swCoinList.isRefreshing = false
+        }
+
+        flowWithLifecycle(
+            dispatcher = Dispatchers.Main,
+            flowData = viewModel.uiStateFlow,
+            repeatedLifecycle = Lifecycle.State.STARTED
+        ) { state ->
+            state.errorMessage?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+            if (state.refreshList) {
+                coinAdapter?.refresh()
+                binding.swCoinList.isRefreshing = true
+            }
         }
     }
 

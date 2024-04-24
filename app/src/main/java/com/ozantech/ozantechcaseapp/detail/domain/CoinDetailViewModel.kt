@@ -34,13 +34,15 @@ class CoinDetailViewModel @Inject constructor(
         }
     }
 
-    fun toggleFavorite(coinItem: CoinResponse.Coin) {
+    fun toggleFavorite(coinItem: CoinResponse.Coin?) {
         viewModelScope.launch {
-            val coinEntity = coinItem.toEntity()
-            if (coinEntity.isFavorite) {
-                appDao.insert(coinEntity)
-            } else {
-                appDao.delete(coinEntity)
+            coinItem?.let {
+                val coinEntity = it.toEntity()
+                if (coinEntity.isFavorite) {
+                    appDao.insert(coinEntity)
+                } else {
+                    appDao.delete(coinEntity)
+                }
             }
         }
     }
